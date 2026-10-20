@@ -1,0 +1,21 @@
+# Development guidelines and planning files. They live in the working copy only.
+/.claude/
+/AGENTS.md
+/STYLE.md
+/RAILS_GUIDE.md
+/DATA_MODEL.md
+/DESIGN.md
+/UX_WRITING.md
+/specs/
+/docs/_origin/
+/docs/_templates/
+/docs/design/
+/docs/personas/
+/docs/product/
+/docs/review/
+/docs/ux-writing/
+/notepad.md
+/.bootstrap-decisions.md
+
+# macOS
+.DS_Store

@@ -1,0 +1,22 @@
+# i18n-tasks: CI fails on any key missing in en.yml or de.yml, and on any key
+# the code doesn't use. https://github.com/glebm/i18n-tasks
+base_locale: en
+locales: [ en, de ]
+
+data:
+  read:
+    - config/locales/%{locale}.yml
+  yaml:
+    write:
+      line_width: -1
+
+search:
+  paths:
+    - app/
+  exclude:
+    - app/assets/fonts
+    - app/assets/images
+
+# Keys Rails looks up by convention, not by a literal t() call.
+ignore_unused:
+  - "activerecord.errors.models.*"

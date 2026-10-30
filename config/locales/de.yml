@@ -1,0 +1,8 @@
+de:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            base:
+              only_one_admin: "Dieser Roadletter hat schon ein Konto." # DRAFT

@@ -37,6 +37,17 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_enqueued_emails 0
   end
 
+  test "too many new passwords are slowed down too" do
+    10.times { put password_path(@admin.password_reset_token), params: { password: "a-new-password", password_confirmation: "another" } }
+
+    assert_no_changes -> { @admin.reload.password_digest } do
+      put password_path(@admin.password_reset_token), params: { password: "a-new-password", password_confirmation: "a-new-password" }
+    end
+
+    assert_response :too_many_requests
+    assert_select ".flash__message", "Too many reset requests. Please wait a moment and try again."
+  end
+
   test "edit" do
     get edit_password_path(@admin.password_reset_token)
     assert_response :success
@@ -44,6 +55,13 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
 
   test "edit with an invalid or used link explains that it has expired" do
     get edit_password_path("invalid token")
+
+    assert_response :gone
+    assert_select "h1", "This link has expired"
+  end
+
+  test "update with an invalid or used link explains that it has expired" do
+    put password_path("invalid token"), params: { password: "a-new-password", password_confirmation: "a-new-password" }
 
     assert_response :gone
     assert_select "h1", "This link has expired"

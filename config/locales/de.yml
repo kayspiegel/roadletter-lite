@@ -65,6 +65,7 @@ de:
       notice: "Dein neues Passwort ist gespeichert. Melde dich damit an."
       blank: "Gib ein neues Passwort ein."
       mismatch: "Gib in beiden Feldern dasselbe Passwort ein."
+      too_short: "Wähle ein Passwort mit mindestens %{count} Zeichen." # DRAFT
     expired:
       title: "Dieser Link ist abgelaufen"
       explanation: "Links zum Zurücksetzen gelten 15 Minuten und nur einmal. Fordere einen neuen an und nutze ihn gleich."

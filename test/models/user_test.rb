@@ -61,6 +61,24 @@ class UserTest < ActiveSupport::TestCase
     assert_not_empty admin.sessions
   end
 
+  test "reset_password rejects a password shorter than 12 characters" do
+    admin = users(:admin)
+
+    assert_not admin.reset_password(password: "elevenchars", password_confirmation: "elevenchars")
+    assert admin.errors.added?(:password, :too_short, count: 12)
+    assert admin.reload.authenticate("password")
+  end
+
+  test "the admin can't be created with a short password" do
+    Session.delete_all
+    User.delete_all
+
+    admin = User.new(name: "Kay", email_address: "kay@example.com", password: "short")
+
+    assert_not admin.save
+    assert admin.errors.added?(:password, :too_short, count: 12)
+  end
+
   test "reset_password rejects a confirmation that doesn't match" do
     admin = users(:admin)
 

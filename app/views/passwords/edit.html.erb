@@ -6,14 +6,19 @@
 </div>
 
 <%= form_with url: password_path(params[:token]), method: :put, class: "auth__form" do |form| %>
-  <% blank = @user.errors.added?(:password, :blank) %>
+  <% password_error =
+       if @user.errors.added?(:password, :blank)
+         t("passwords.update.blank")
+       elsif @user.errors.added?(:password, :too_short, count: User::PASSWORD_MINIMUM_LENGTH)
+         t("passwords.update.too_short", count: User::PASSWORD_MINIMUM_LENGTH)
+       end %>
   <div class="field field--prominent">
     <div class="field__header">
       <%= form.label :password, t(".password_label"), class: "field__label" %>
     </div>
     <%= form.password_field :password, required: true, autofocus: true, autocomplete: "new-password", maxlength: 72, class: "field__input",
-          aria: { invalid: blank, describedby: ("password-error" if blank) } %>
-    <%= render "shared/inline_error", id: "password-error", message: t("passwords.update.blank") if blank %>
+          aria: { invalid: password_error.present?, describedby: ("password-error" if password_error) } %>
+    <%= render "shared/inline_error", id: "password-error", message: password_error if password_error %>
   </div>
 
   <% mismatch = @user.errors.include?(:password_confirmation) %>

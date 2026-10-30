@@ -65,6 +65,7 @@ en:
       notice: "Your new password is saved. Sign in with it."
       blank: "Enter a new password."
       mismatch: "Type the same password in both fields."
+      too_short: "Choose a password with at least %{count} characters."
     expired:
       title: "This link has expired"
       explanation: "Reset links work for 15 minutes and only once. Request a new one and use it right away."

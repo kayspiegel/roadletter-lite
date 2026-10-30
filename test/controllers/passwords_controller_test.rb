@@ -97,6 +97,16 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_select "#password_confirmation[aria-describedby=password-confirmation-error]"
   end
 
+  test "update with a password that is too short" do
+    assert_no_changes -> { @admin.reload.password_digest } do
+      put password_path(@admin.password_reset_token), params: { password: "elevenchars", password_confirmation: "elevenchars" }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select "#password-error", "Choose a password with at least 12 characters."
+    assert_select "#password[aria-describedby=password-error]"
+  end
+
   test "update with an empty password" do
     assert_no_changes -> { @admin.reload.password_digest } do
       put password_path(@admin.password_reset_token), params: { password: "", password_confirmation: "" }

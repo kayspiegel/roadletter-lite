@@ -1,0 +1,23 @@
+@layer components {
+  .empty-state {
+    display: grid;
+    gap: var(--space-xs);
+    justify-items: start;
+    padding-block: 32px;
+  }
+
+  .empty-state__title {
+    font-size: var(--text-4xl);
+    line-height: 1.3;
+  }
+
+  .empty-state__text {
+    color: var(--color-ink-muted);
+    font-size: var(--text-m);
+    line-height: 1.55;
+  }
+
+  .empty-state__link {
+    font-weight: 600;
+  }
+}

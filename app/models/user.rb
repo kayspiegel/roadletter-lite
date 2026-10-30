@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  PASSWORD_MINIMUM_LENGTH = 12
+
   has_secure_password
   has_many :sessions, dependent: :destroy
 
@@ -8,6 +10,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
   validate :only_one_admin, on: :create
+  validates :password, length: { minimum: PASSWORD_MINIMUM_LENGTH }, allow_nil: true
   validates :password, presence: true, on: :password_reset
 
   class << self

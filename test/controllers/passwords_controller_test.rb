@@ -37,6 +37,18 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_enqueued_emails 0
   end
 
+  test "too many new passwords are slowed down too" do
+    # Invalid links count too: the limit runs before the token is looked up.
+    10.times { put password_path("invalid token"), params: { password: "a-new-password", password_confirmation: "a-new-password" } }
+
+    assert_no_changes -> { @admin.reload.password_digest } do
+      put password_path(@admin.password_reset_token), params: { password: "a-new-password", password_confirmation: "a-new-password" }
+    end
+
+    assert_response :too_many_requests
+    assert_select ".flash__message", "Too many reset requests. Please wait a moment and try again."
+  end
+
   test "edit" do
     get edit_password_path(@admin.password_reset_token)
     assert_response :success
@@ -44,6 +56,13 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
 
   test "edit with an invalid or used link explains that it has expired" do
     get edit_password_path("invalid token")
+
+    assert_response :gone
+    assert_select "h1", "This link has expired"
+  end
+
+  test "update with an invalid or used link explains that it has expired" do
+    put password_path("invalid token"), params: { password: "a-new-password", password_confirmation: "a-new-password" }
 
     assert_response :gone
     assert_select "h1", "This link has expired"
@@ -76,6 +95,16 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select "#password-confirmation-error", "Type the same password in both fields."
     assert_select "#password_confirmation[aria-describedby=password-confirmation-error]"
+  end
+
+  test "update with a password that is too short" do
+    assert_no_changes -> { @admin.reload.password_digest } do
+      put password_path(@admin.password_reset_token), params: { password: "elevenchars", password_confirmation: "elevenchars" }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select "#password-error", "Choose a password with at least 12 characters."
+    assert_select "#password[aria-describedby=password-error]"
   end
 
   test "update with an empty password" do

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
   validate :only_one_admin, on: :create
+  validates :password, presence: true, on: :password_reset
 
   class << self
     def admin
@@ -16,6 +17,19 @@ class User < ApplicationRecord
 
     def seed(name:, email_address:, password:)
       admin || create!(name:, email_address:, password:)
+    end
+  end
+
+  # has_secure_password skips an empty password on update, so a reset checks
+  # for one itself. Every session ends with the old password.
+  def reset_password(passwords)
+    assign_attributes(passwords)
+
+    if save(context: :password_reset)
+      sessions.destroy_all
+      true
+    else
+      false
     end
   end
 

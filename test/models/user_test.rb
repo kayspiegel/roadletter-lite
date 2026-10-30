@@ -43,4 +43,29 @@ class UserTest < ActiveSupport::TestCase
     User.delete_all
     assert_nil User.admin
   end
+
+  test "reset_password saves the new password and ends every session" do
+    admin = users(:admin)
+
+    assert admin.reset_password(password: "a-new-password", password_confirmation: "a-new-password")
+    assert admin.reload.authenticate("a-new-password")
+    assert_empty admin.sessions
+  end
+
+  test "reset_password rejects an empty password" do
+    admin = users(:admin)
+
+    assert_not admin.reset_password(password: "", password_confirmation: "")
+    assert admin.errors.added?(:password, :blank)
+    assert admin.reload.authenticate("password")
+    assert_not_empty admin.sessions
+  end
+
+  test "reset_password rejects a confirmation that doesn't match" do
+    admin = users(:admin)
+
+    assert_not admin.reset_password(password: "a-new-password", password_confirmation: "another-password")
+    assert admin.errors.added?(:password_confirmation, :confirmation, attribute: "Password")
+    assert admin.reload.authenticate("password")
+  end
 end

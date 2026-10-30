@@ -14,3 +14,10 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+module ActionDispatch
+  class IntegrationTest
+    # Rate limits count per IP in the controller cache store; start every test at zero.
+    setup { ActionController::Base.cache_store.clear }
+  end
+end

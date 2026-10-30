@@ -1,0 +1,44 @@
+<header class="header">
+  <%= render "shared/wordmark", href: admin_root_path, classes: "header__brand" %>
+
+  <nav class="header__nav" aria-label="<%= t(".nav_label") %>">
+    <ul class="header__nav-list" role="list">
+      <li><%= link_to t(".nav.dashboard"), admin_root_path, class: "header__nav-item", aria: { current: ("page" if current_page?(admin_root_path)) } %></li>
+      <%# Issues, Subscribers and Settings link to their pages once those exist %>
+      <li><a class="header__nav-item"><%= t(".nav.issues") %></a></li>
+      <li><a class="header__nav-item"><%= t(".nav.subscribers") %></a></li>
+      <li><a class="header__nav-item"><%= t(".nav.settings") %></a></li>
+    </ul>
+  </nav>
+
+  <%# Works from the writing stage on %>
+  <a class="button button--primary header__new-issue">
+    <span class="button__glyph" aria-hidden="true">+</span>
+    <%= t(".new_issue") %>
+  </a>
+
+  <%= render "layouts/admin/language_switch", classes: "header__language" %>
+
+  <details class="account-menu header__account">
+    <summary class="account-menu__trigger" aria-label="<%= t(".account_label") %>"><%= Current.user.name.first.upcase %></summary>
+
+    <div class="account-menu__panel">
+      <div class="account-menu__identity">
+        <span class="account-menu__name"><%= Current.user.name %></span>
+        <span class="account-menu__email"><%= Current.user.email_address %></span>
+      </div>
+
+      <div class="account-menu__language">
+        <span><%= t(".language_label") %></span>
+        <%= render "layouts/admin/language_switch" %>
+      </div>
+
+      <hr class="account-menu__divider">
+
+      <%= button_to session_path, method: :delete, class: "account-menu__item" do %>
+        <%= icon_tag "log-out", class: "account-menu__icon" %>
+        <%= t(".sign_out") %>
+      <% end %>
+    </div>
+  </details>
+</header>

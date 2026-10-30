@@ -1,0 +1,9 @@
+<% content_for :title, t(".title") %>
+
+<div class="auth__heading">
+  <h1 class="auth__title"><%= t(".title") %></h1>
+  <p class="auth__text"><%= t(".explanation", email: @email_address) %></p>
+  <p class="auth__text"><%= t(".help_html", link: link_to(t(".request_again"), new_password_path)) %></p>
+</div>
+
+<p class="auth__note"><%= link_to t(".back"), new_session_path %></p>

@@ -1,0 +1,10 @@
+<% content_for :title, t(".title") %>
+
+<div class="auth__heading">
+  <h1 class="auth__title"><%= t(".title") %></h1>
+  <p class="auth__text"><%= t(".explanation") %></p>
+</div>
+
+<%= link_to t(".request_new"), new_password_path, class: "button button--primary button--large button--block" %>
+
+<p class="auth__note"><%= link_to t(".back"), new_session_path %></p>

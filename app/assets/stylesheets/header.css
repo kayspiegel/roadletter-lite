@@ -1,101 +1,20 @@
 /* The admin header: wordmark, navigation, "New issue", language switch and
    account menu. Below 960px the navigation moves to its own row and scrolls
-   sideways, and the language switch moves into the account menu. */
+   sideways, and the language switch moves into the account menu.
+
+   The language switch and the account menu come first, so the header's rules
+   for placing them win within the layer. */
 @layer components {
-  .header {
-    align-items: center;
-    background-color: var(--color-paper);
-    border-block-end: 1px solid var(--color-line);
-    column-gap: 28px;
-    display: grid;
-    grid-template-areas: "brand nav . new-issue language account";
-    grid-template-columns: auto auto 1fr auto auto auto;
-    min-block-size: var(--space-2xl);
-    padding-inline: 32px;
-  }
-
-  .header__brand {
-    grid-area: brand;
-  }
-
-  .header__nav {
-    align-self: stretch;
-    grid-area: nav;
-  }
-
-  .header__nav-list {
-    block-size: 100%;
-    display: flex;
-    gap: var(--space-2xs);
-  }
-
-  .header__nav-item {
-    align-items: center;
-    block-size: 100%;
-    border-block-end: 2px solid transparent;
-    color: var(--color-ink-muted);
-    display: flex;
-    font-weight: 500;
-    padding-inline: var(--space-s);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .header__nav-item[href]:hover {
-    color: var(--color-ink);
-  }
-
-  .header__nav-item[aria-current="page"] {
-    border-block-end-color: var(--color-accent);
-    color: var(--color-ink);
-    font-weight: 600;
-  }
-
-  .header__new-issue {
-    grid-area: new-issue;
-  }
-
-  .header__language {
-    grid-area: language;
-  }
-
-  .header__account {
-    grid-area: account;
-  }
-
-  @media (max-width: 960px) {
-    .header {
-      column-gap: var(--space-s);
-      grid-template-areas:
-        "brand . new-issue account"
-        "nav nav nav nav";
-      grid-template-columns: auto 1fr auto auto;
-      grid-template-rows: 56px var(--size-hit);
-      padding-inline: var(--space-m);
-    }
-
-    .header__nav {
-      margin-inline: calc(var(--space-s) * -1);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .header__new-issue {
-      --button-height: 34px;
-      --button-padding: var(--space-s);
-    }
-
-    .header__language {
-      display: none;
-    }
-  }
-
   /* Language switch: EN / DE as a pair of pressed buttons */
   .language-switch {
     border: 1px solid var(--color-line);
     border-radius: var(--radius-m);
     display: inline-flex;
     padding: 3px;
+  }
+
+  .language-switch__form {
+    display: contents;
   }
 
   .language-switch__option {
@@ -212,6 +131,94 @@
 
     .account-menu__language {
       display: flex;
+    }
+  }
+
+  .header {
+    align-items: center;
+    background-color: var(--color-paper);
+    border-block-end: 1px solid var(--color-line);
+    column-gap: 28px;
+    display: grid;
+    grid-template-areas: "brand nav . new-issue language account";
+    grid-template-columns: auto auto 1fr auto auto auto;
+    min-block-size: var(--space-2xl);
+    padding-inline: 32px;
+  }
+
+  .header__brand {
+    grid-area: brand;
+  }
+
+  .header__nav {
+    align-self: stretch;
+    grid-area: nav;
+  }
+
+  .header__nav-list {
+    block-size: 100%;
+    display: flex;
+    gap: var(--space-2xs);
+  }
+
+  .header__nav-item {
+    align-items: center;
+    block-size: 100%;
+    border-block-end: 2px solid transparent;
+    color: var(--color-ink-muted);
+    display: flex;
+    font-weight: 500;
+    padding-inline: var(--space-s);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .header__nav-item[href]:hover {
+    color: var(--color-ink);
+  }
+
+  .header__nav-item[aria-current="page"] {
+    border-block-end-color: var(--color-accent);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .header__new-issue {
+    grid-area: new-issue;
+  }
+
+  .header__language {
+    grid-area: language;
+  }
+
+  .header__account {
+    grid-area: account;
+  }
+
+  @media (max-width: 960px) {
+    .header {
+      column-gap: var(--space-s);
+      grid-template-areas:
+        "brand . new-issue account"
+        "nav nav nav nav";
+      grid-template-columns: auto 1fr auto auto;
+      grid-template-rows: 56px var(--size-hit);
+      padding-inline: var(--space-m);
+    }
+
+    .header__nav {
+      margin-inline: calc(var(--space-s) * -1);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .header__new-issue {
+      --button-height: 34px;
+      --button-padding: var(--space-s);
+    }
+
+    .header__language {
+      display: none;
     }
   }
 }

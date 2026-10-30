@@ -20,3 +20,4 @@ search:
 # Keys Rails looks up by convention, not by a literal t() call.
 ignore_unused:
   - "activerecord.errors.models.*"
+  - "date.formats.*"

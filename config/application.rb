@@ -23,5 +23,10 @@ module RoadletterLite
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # UUIDv7 primary keys, assigned in ApplicationRecord (SQLite has no generator).
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end

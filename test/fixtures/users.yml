@@ -1,3 +1,5 @@
 admin:
+  name: Kay
   email_address: admin@example.com
   password_digest: <%= BCrypt::Password.create("password") %>
+  locale: en

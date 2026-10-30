@@ -16,6 +16,7 @@
 /docs/ux-writing/
 /notepad.md
 /.bootstrap-decisions.md
+/bin/ds
 
 # macOS
 .DS_Store

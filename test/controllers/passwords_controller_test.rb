@@ -38,7 +38,8 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "too many new passwords are slowed down too" do
-    10.times { put password_path(@admin.password_reset_token), params: { password: "a-new-password", password_confirmation: "another" } }
+    # Invalid links count too: the limit runs before the token is looked up.
+    10.times { put password_path("invalid token"), params: { password: "a-new-password", password_confirmation: "a-new-password" } }
 
     assert_no_changes -> { @admin.reload.password_digest } do
       put password_path(@admin.password_reset_token), params: { password: "a-new-password", password_confirmation: "a-new-password" }

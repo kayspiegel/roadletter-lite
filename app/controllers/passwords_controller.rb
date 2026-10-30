@@ -2,8 +2,8 @@ class PasswordsController < ApplicationController
   layout "auth"
 
   allow_unauthenticated_access
-  before_action :set_user_by_token, only: %i[ edit update ]
   rate_limit to: 10, within: 3.minutes, only: %i[ create update ], with: :too_many_requests
+  before_action :set_user_by_token, only: %i[ edit update ]
 
   def new
   end
@@ -36,8 +36,10 @@ class PasswordsController < ApplicationController
       render :expired, status: :gone
     end
 
+    # The limit runs before the token is looked up, so there is no user to show
+    # the new-password form for. The link stays valid until it expires.
     def too_many_requests
       flash.now[:alert] = t("passwords.create.rate_limited")
-      render action_name == "create" ? :new : :edit, status: :too_many_requests
+      render :new, status: :too_many_requests
     end
 end

@@ -19,8 +19,9 @@
 
   <%= render "layouts/admin/language_switch", classes: "header__language" %>
 
-  <details class="account-menu header__account">
-    <summary class="account-menu__trigger" aria-label="<%= t(".account_label") %>"><%= Current.user.name.first.upcase %></summary>
+  <details class="account-menu header__account" data-controller="account-menu"
+           data-action="click@document->account-menu#closeOnOutsideClick keydown.esc@document->account-menu#closeOnEscape">
+    <summary class="account-menu__trigger" aria-label="<%= t(".account_label") %>" data-account-menu-target="trigger"><%= Current.user.name.first.upcase %></summary>
 
     <div class="account-menu__panel">
       <div class="account-menu__identity">

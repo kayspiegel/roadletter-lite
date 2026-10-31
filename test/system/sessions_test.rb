@@ -34,6 +34,9 @@ class SessionsTest < ApplicationSystemTestCase
     fill_in "email_address", with: users(:admin).email_address
     click_button "Email me a reset link"
 
+    # The form submits without Turbo, so wait for the new page before querying
+    # it: a node from the old one can vanish mid-query with an unknown error.
+    assert_current_path passwords_path
     assert_selector "h1", text: "Check your inbox"
     assert_text "If #{users(:admin).email_address} is the address of this Roadletter"
   end

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <%= render "layouts/head" %>
+  </head>
+
+  <body>
+    <main class="auth">
+      <%= render "shared/wordmark", size: :large, classes: "auth__wordmark" %>
+      <%= render "shared/flash" %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+<%# locals: (size: nil, href: nil, classes: nil) %>
+<%= content_tag href ? :a : :div, href:, class: token_list("wordmark", "wordmark--#{size}" => size, classes => classes) do %>
+  <span class="wordmark__name"><%= t("layouts.admin.header.wordmark_name") %></span>
+  <span class="wordmark__tag"><%= t("layouts.admin.header.wordmark_suffix") %></span>
+<% end %>

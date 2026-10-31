@@ -1,0 +1,13 @@
+<% if flash.any? %>
+  <div aria-live="polite">
+    <% flash.each do |type, message| %>
+      <div class="flash <%= "flash--alert" if type == "alert" %>" data-controller="flash">
+        <%= icon_tag type == "alert" ? "circle-alert" : "circle-check", class: "flash__icon" %>
+        <p class="flash__message"><%= message %></p>
+        <button type="button" class="flash__dismiss" data-action="flash#dismiss" aria-label="<%= t("shared.flash.dismiss") %>" title="<%= t("shared.flash.dismiss") %>">
+          <%= icon_tag "x" %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

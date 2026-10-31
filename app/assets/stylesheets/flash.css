@@ -1,0 +1,50 @@
+@layer components {
+  .flash {
+    --flash-background: var(--color-ok-soft);
+    --flash-icon: var(--color-ok);
+
+    align-items: center;
+    background-color: var(--flash-background);
+    border-radius: var(--radius-m);
+    display: flex;
+    gap: var(--space-s);
+    line-height: 1.5;
+    padding: var(--space-s) var(--space-m);
+  }
+
+  .flash--alert {
+    --flash-background: var(--color-error-soft);
+    --flash-icon: var(--color-error);
+  }
+
+  .flash__icon {
+    block-size: 18px;
+    color: var(--flash-icon);
+    flex-shrink: 0;
+    inline-size: 18px;
+  }
+
+  .flash__message {
+    flex: 1;
+  }
+
+  .flash__dismiss {
+    align-items: center;
+    block-size: 28px;
+    border-radius: var(--radius-s);
+    color: var(--color-ink-muted);
+    display: flex;
+    flex-shrink: 0;
+    inline-size: 28px;
+    justify-content: center;
+  }
+
+  .flash__dismiss:hover {
+    background-color: var(--color-paper-raised);
+  }
+
+  .flash__dismiss svg {
+    block-size: 16px;
+    inline-size: 16px;
+  }
+}

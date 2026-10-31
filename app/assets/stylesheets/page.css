@@ -1,0 +1,101 @@
+/* Page layouts: the admin column under the header, and the narrow centred
+   column of the signed-out pages (sign-in, password reset). */
+@layer components {
+  .page {
+    display: grid;
+    gap: 56px;
+    margin-inline: auto;
+    max-inline-size: var(--width-desk);
+    padding: var(--space-2xl) 20px 0;
+  }
+
+  .page__intro {
+    display: grid;
+    gap: 10px;
+  }
+
+  .page__date {
+    color: var(--color-ink-muted);
+    font-size: var(--text-small);
+  }
+
+  .page__greeting {
+    font-size: var(--text-greeting);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .page__lead {
+    color: var(--color-ink-muted);
+    font-family: var(--font-text);
+    font-size: var(--text-3xl);
+    line-height: 1.55;
+  }
+
+  .page__footer {
+    color: var(--color-ink-muted);
+    font-size: var(--text-small);
+    padding-block-end: 48px;
+  }
+
+  @media (max-width: 960px) {
+    .page {
+      gap: 32px;
+      padding-block-start: var(--space-xl);
+    }
+
+    .page__greeting {
+      font-size: var(--text-5xl);
+    }
+  }
+
+  .auth {
+    display: grid;
+    gap: 36px;
+    margin-inline: auto;
+    max-inline-size: calc(360px + 2 * 32px);
+    padding: 158px 32px var(--space-xl);
+  }
+
+  .auth__wordmark {
+    justify-self: center;
+  }
+
+  .auth__heading {
+    display: grid;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .auth__title {
+    font-size: var(--text-4xl);
+    line-height: 1.3;
+  }
+
+  .auth__text {
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+  }
+
+  .auth__form {
+    display: grid;
+    gap: 18px;
+  }
+
+  .auth__submit {
+    margin-block-start: 6px;
+  }
+
+  .auth__note {
+    color: var(--color-ink-muted);
+    font-size: var(--text-small);
+    text-align: center;
+  }
+
+  @media (max-width: 960px) {
+    .auth {
+      gap: 32px;
+      padding: 64px 20px var(--space-xl);
+    }
+  }
+}

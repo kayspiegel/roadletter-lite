@@ -1,0 +1,38 @@
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    font-size: var(--text-ui);
+    line-height: 1.5;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-text);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-selection);
+  }
+
+  label {
+    font-weight: 600;
+  }
+}

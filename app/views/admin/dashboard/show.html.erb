@@ -1,0 +1,17 @@
+<% content_for :title, t(".title") %>
+
+<section class="page__intro">
+  <p class="page__date"><%= l Date.current, format: :weekday_and_day %></p>
+  <h1 class="page__greeting"><%= t(".greeting", name: Current.user.name) %></h1>
+  <p class="page__lead"><%= t(".first_run.lead") %></p>
+</section>
+
+<section class="empty-state">
+  <h2 class="empty-state__title"><%= t(".first_run.empty_title") %></h2>
+  <p class="empty-state__text"><%= t(".first_run.empty_text") %></p>
+  <%= link_to t(".first_run.setup_guide"), "https://github.com/kayspiegel/roadletter-lite/blob/main/docs/ses-gdpr.md", class: "empty-state__link" %>
+</section>
+
+<footer class="page__footer">
+  <%= t(".footer.version", version: RoadletterLite::VERSION) %>
+</footer>

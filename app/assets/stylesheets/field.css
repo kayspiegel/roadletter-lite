@@ -1,0 +1,70 @@
+@layer components {
+  .field {
+    --field-height: auto;
+    --field-text: var(--text-m);
+
+    display: grid;
+    gap: 6px;
+  }
+
+  .field__header {
+    align-items: baseline;
+    display: flex;
+    gap: var(--space-s);
+    justify-content: space-between;
+  }
+
+  .field__label {
+    font-size: var(--text-ui);
+    font-weight: 600;
+  }
+
+  .field__aside {
+    font-size: var(--text-small);
+  }
+
+  .field__input {
+    background-color: var(--color-paper-raised);
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-m);
+    color: var(--color-ink);
+    font-size: var(--field-text);
+    inline-size: 100%;
+    min-block-size: var(--field-height);
+    padding: 10px 13px;
+  }
+
+  .field__input:focus {
+    border-color: var(--color-focus);
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .field__input[aria-invalid="true"] {
+    border-color: var(--color-error);
+  }
+
+  .field__hint {
+    color: var(--color-ink-muted);
+    font-size: var(--text-small);
+  }
+
+  .field--prominent {
+    --field-height: var(--size-hit);
+    --field-text: var(--text-l);
+  }
+
+  /* Inline error below a field: an icon and a sentence, never colour alone */
+  .inline-error {
+    color: var(--color-error);
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .inline-error__icon {
+    block-size: 15px;
+    flex-shrink: 0;
+    inline-size: 15px;
+    margin-block-start: 1.5px;
+  }
+}

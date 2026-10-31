@@ -1,0 +1,95 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            base:
+              only_one_admin: "This Roadletter has one account already."
+  admin:
+    dashboard:
+      show:
+        title: "Dashboard"
+        greeting: "Hello, %{name}."
+        first_run:
+          lead: "Roadletter Lite is installed. Next up: connecting Amazon SES."
+          empty_title: "Nothing here yet"
+          empty_text: "Your drafts, readers and sent issues will appear here. First, Roadletter Lite needs Amazon SES to send email."
+          setup_guide: "Read the Amazon SES setup guide"
+        footer:
+          version: "Roadletter Lite %{version}"
+  date:
+    formats:
+      weekday_and_day: "%A, %B %-d"
+  layouts:
+    admin:
+      header:
+        wordmark_name: "Roadletter"
+        wordmark_suffix: "LITE"
+        nav_label: "Main navigation"
+        nav:
+          dashboard: "Dashboard"
+          issues: "Issues"
+          subscribers: "Subscribers"
+          settings: "Settings"
+        new_issue: "New issue"
+        language_label: "Language"
+        language_en: "EN"
+        language_de: "DE"
+        language_en_name: "English"
+        language_de_name: "Deutsch"
+        account_label: "Account menu"
+        sign_out: "Sign out"
+  passwords:
+    new:
+      title: "Reset your password"
+      explanation: "Enter the email address you sign in with. You’ll get a link to choose a new password."
+      email_label: "Email"
+      submit: "Email me a reset link"
+      back: "Back to sign in"
+    create:
+      rate_limited: "Too many reset requests. Please wait a moment and try again."
+    sent:
+      title: "Check your inbox"
+      explanation: "If %{email} is the address of this Roadletter, a link to choose a new password is on its way. The link works for 15 minutes."
+      help_html: "No email after a few minutes? Look in your spam folder, or %{link}."
+      request_again: "request a new link"
+      back: "Back to sign in"
+    edit:
+      title: "Choose a new password"
+      explanation: "You’ll use it the next time you sign in."
+      password_label: "New password"
+      password_confirmation_label: "Repeat new password"
+      submit: "Save new password"
+    update:
+      notice: "Your new password is saved. Sign in with it."
+      blank: "Enter a new password."
+      mismatch: "Type the same password in both fields."
+      too_short: "Choose a password with at least %{count} characters."
+    expired:
+      title: "This link has expired"
+      explanation: "Reset links work for 15 minutes and only once. Request a new one and use it right away."
+      request_new: "Request a new link"
+      back: "Back to sign in"
+  passwords_mailer:
+    reset:
+      subject: "Choose a new password for Roadletter Lite"
+      action: "Choose a new password for your Roadletter Lite."
+      constraint: "The link works for 15 minutes and only once."
+      cta: "Choose a new password"
+      link_note: "Or open this link:"
+      ignore_note: "If you didn’t ask for a new password, ignore this email. Your password stays as it is."
+  sessions:
+    new:
+      title: "Sign in"
+      email_label: "Email"
+      password_label: "Password"
+      forgot_password: "Forgot password?"
+      submit: "Sign in"
+      single_account_note: "This Roadletter has one account. There is no sign-up."
+    create:
+      invalid: "Check your email and password and try again."
+      rate_limited: "Too many sign-in attempts. Please wait a moment and try again."
+  shared:
+    flash:
+      dismiss: "Dismiss"

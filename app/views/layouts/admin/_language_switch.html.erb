@@ -1,0 +1,9 @@
+<%# locals: (classes: nil) %>
+<div class="<%= token_list("language-switch", classes) %>" role="group" aria-label="<%= t("layouts.admin.header.language_label") %>">
+  <% I18n.available_locales.each do |locale| %>
+    <%= button_to t("layouts.admin.header.language_#{locale}"), admin_locale_path, method: :patch,
+          params: { locale: }, form_class: "language-switch__form", class: "language-switch__option",
+          lang: locale, title: t("layouts.admin.header.language_#{locale}_name"),
+          aria: { label: t("layouts.admin.header.language_#{locale}_name"), pressed: I18n.locale == locale } %>
+  <% end %>
+</div>

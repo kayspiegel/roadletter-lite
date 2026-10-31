@@ -2,7 +2,7 @@
 
 A small, self-hosted newsletter tool for writers, built in public with Rails and Amazon SES.
 
-**Status:** Stage 00 of 10. Not usable yet.
+**Status:** Stage 01 of 10. Not usable yet.
 
 ## What it will do
 
